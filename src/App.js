@@ -123,10 +123,14 @@ function ChatRoom() {
 }
 
 function ChatMessage(props) {
-  console.log(JSON.stringify(props.message, null, 4))
   const { displayName, text, uid, photoURL, createdAt } = props.message;
-
   const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
+  let created = new Date(createdAt.seconds * 1000).toLocaleDateString("en-us", {
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 
   return (
     <>
@@ -142,7 +146,7 @@ function ChatMessage(props) {
           </div>
           <div class="row border">
             <div class="col-md-6 border">Posted By: {displayName}</div>
-            <div class="col-md-6 border">At:</div>
+            <div class="col-md-6 border">At: {created.toString()}</div>
           </div>
         </div>
       </div>
