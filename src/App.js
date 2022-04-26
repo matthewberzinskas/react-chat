@@ -27,7 +27,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header>
         <h1>⚛️🔥💬</h1>
         <SignOut />
       </header>
@@ -53,10 +53,28 @@ function SignOut() {
 }
 
 function ChatRoom() {
+  //Firebase query
   const messagesRef = firestore.collection("messages");
   const query = messagesRef.orderBy("createdAt").limitToLast(25);
-
   const [messages] = useCollectionData(query, { idField: "id" });
+
+  //Input form
+  const [formValue, setFormValue] = useState('');
+
+  const sendMessage = async (e) => {
+    e.preventDefault();
+    const {uid, photoURL} = auth.currentUser;
+
+    await messagesRef.add({
+      text: formValue,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      uid,
+      photoURL
+    })
+
+    //Reset the form
+    setFormValue('')
+  }
 
   return (
     <>
@@ -64,6 +82,10 @@ function ChatRoom() {
         {messages &&
           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
       </main>
+      <form onSubmit={sendMessage}>
+          <input value={formValue} onChange={(e)=> setFormValue(e.target.value)} placeholder="Enter your message..."/>
+          <button type="submit" disabled={!formValue}>↩️</button>
+      </form>
     </>
   );
 }
