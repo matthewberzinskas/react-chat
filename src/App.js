@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./Firebase";
 
 import Navbar from "./components/Navbar";
 import SignIn from "./components/SignIn";
 import ChatRoom from "./components/ChatRoom";
-
-import firebase, { auth, firestore } from "./Firebase";
 
 import "./App.css";
 

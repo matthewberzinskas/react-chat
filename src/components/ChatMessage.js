@@ -1,4 +1,4 @@
-import firebase, { auth, firestore } from "../Firebase";
+import { auth } from "../Firebase";
 
 function ChatMessage(props) {
   const { displayName, text, uid, photoURL, createdAt } = props.message;
@@ -24,7 +24,7 @@ function ChatMessage(props) {
         } border p-2`}
       >
         <div className="text-center col-md-2 col-3 p-1">
-          <img src={photoURL} referrerPolicy="no-referrer" />
+          <img src={photoURL} referrerPolicy="no-referrer" alt={`of ${displayName}`} />
         </div>
         <div className="col-md-10 col-9 p-1">
           <p>{text}</p>
