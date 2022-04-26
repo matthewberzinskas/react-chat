@@ -26,7 +26,8 @@ function App() {
   console.log("Welcome", JSON.stringify(user, null, 2));
 
   return (
-    <div className="App">
+    <body className="bg-light vh-100">
+    <div className="d-flex align-items-center justify-content-center">
       <header>
         <h1>⚛️🔥💬</h1>
         <SignOut />
@@ -34,6 +35,8 @@ function App() {
 
       <section>{user ? <ChatRoom /> : <SignIn />}</section>
     </div>
+    </body>
+
   );
 }
 
