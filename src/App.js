@@ -76,11 +76,18 @@ function ChatRoom() {
     setFormValue('')
   }
 
+  //Chat auto-scroll
+  const dummy = useRef();
+  useEffect(()=>{
+    dummy.current.scrollIntoView({behavior: 'smooth'});
+  }, [messages])
+
   return (
     <>
       <main>
         {messages &&
           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
+          <span ref={dummy}></span>
       </main>
       <form onSubmit={sendMessage}>
           <input value={formValue} onChange={(e)=> setFormValue(e.target.value)} placeholder="Enter your message..."/>
