@@ -6,10 +6,10 @@ export default function Homepage(props) {
   console.log(props.user);
   let user = props.user;
   return (
-    <div classNameName="d-flex flex-column">
+    <div className="d-flex flex-column">
       <h1>Welcome {user.displayName}!</h1>
-      <div classNameName="profile-buttons btn-group-vertical gap-1 p-1">
-        <button type="button" classNameName="btn btn-primary">
+      <div className="profile-buttons btn-group-vertical gap-1 p-1">
+        <button type="button" className="btn btn-primary">
           <Link to="/chat">Go to Chat</Link>
         </button>
         <Logout />
@@ -19,7 +19,7 @@ export default function Homepage(props) {
         <div className="pic-container col-2">
           {" "}
           <img
-            classNameName="profile-pic"
+            className="profile-pic"
             src={user.photoURL}
             referrerPolicy="no-referrer"
             alt={`of ${user.displayName}`}
