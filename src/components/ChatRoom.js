@@ -4,6 +4,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 
 import Navbar from "./Navbar";
 import ChatMessage from './ChatMessage'
+import Footer from "./Footer";
 
 function ChatRoom() {
   //Firebase query
@@ -39,7 +40,7 @@ function ChatRoom() {
   return (
     <>
     <Navbar/>
-      <main>
+      <main className="message-scroll">
         {messages &&
           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
         <span ref={dummy}></span>
@@ -64,6 +65,7 @@ function ChatRoom() {
           </div>
         </form>
       </div>
+      <Footer/>
     </>
   );
 }

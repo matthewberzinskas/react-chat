@@ -1,5 +1,4 @@
 import React from "react";
-
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./Firebase";
 
@@ -7,7 +6,7 @@ import Homepage from "./components/Homepage";
 
 import "./App.css";
 
-function App() {
+export default function App() {
   const [user] = useAuthState(auth);
   console.log("Welcome", JSON.stringify(user, null, 3));
 
@@ -29,5 +28,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
