@@ -26,10 +26,10 @@ function App() {
   console.log("Welcome", JSON.stringify(user, null, 3));
 
   return (
-    <body className="container border">
-      <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+    <div className="container border">
+      <nav className="navbar navbar-light bg-light">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
             React-Chat
           </a>
           <div className="justify-content-end">
@@ -41,7 +41,7 @@ function App() {
       <div className="border">
         <section>{user ? <ChatRoom /> : <SignIn />}</section>
       </div>
-    </body>
+    </div>
   );
 }
 
@@ -71,13 +71,14 @@ function ChatRoom() {
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    const { uid, photoURL } = auth.currentUser;
+    const { displayName, uid, photoURL } = auth.currentUser;
 
     await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid,
       photoURL,
+      displayName,
     });
 
     //Reset the form
@@ -99,10 +100,10 @@ function ChatRoom() {
       </main>
       <div className="messageEntry">
         <form onSubmit={sendMessage}>
-          <div class="input-group">
+          <div className="input-group">
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               value={formValue}
               onChange={(e) => setFormValue(e.target.value)}
               placeholder="Enter your message..."
@@ -122,15 +123,28 @@ function ChatRoom() {
 }
 
 function ChatMessage(props) {
-  const { text, uid, photoURL } = props.message;
+  console.log(JSON.stringify(props.message, null, 4))
+  const { displayName, text, uid, photoURL, createdAt } = props.message;
 
   const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
 
   return (
     <>
-      <div className={`message ${messageClass}`}>
-        <img src={photoURL} referrerpolicy="no-referrer"/>
-        <p>{text}</p>
+      <div class="row border">
+        <div class="col-md-2 col-3">
+          <img src={photoURL} referrerPolicy="no-referrer" />
+        </div>
+        <div class="col-md-10 col-9">
+          <div class="pb-3">
+            <div className={`message ${messageClass}`}>
+              <p>{text}</p>
+            </div>
+          </div>
+          <div class="row border">
+            <div class="col-md-6 border">Posted By: {displayName}</div>
+            <div class="col-md-6 border">At:</div>
+          </div>
+        </div>
       </div>
     </>
   );
