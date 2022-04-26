@@ -23,7 +23,7 @@ export default function ChatMessage(props) {
         } border p-2`}
       >
         <div className="text-center col-md-2 col-4 p-1">
-          <img src={photoURL} referrerPolicy="no-referrer" alt={`of ${displayName}`} />
+          <img className="profile-pic" src={photoURL} referrerPolicy="no-referrer" alt={`of ${displayName}`} />
         </div>
         <div className="col-md-10 col-8 p-1">
           <p>{text}</p>
