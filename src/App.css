@@ -1,0 +1,13 @@
+.pic-container img {
+  max-width: 80%;
+}
+
+.message:hover {
+  background-color: #f0f0f0;
+  cursor:default;
+}
+
+.profile-buttons a {
+  text-decoration: none;
+  color:white;
+}

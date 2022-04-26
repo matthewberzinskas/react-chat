@@ -12,10 +12,10 @@ export default function App() {
   console.log("Welcome", JSON.stringify(user, null, 3));
 
   return (
-    <div className="container bg-dark min-vh-100 min-vw-100">
+    <div className="container min-vh-100 min-vw-100">
       <div className="container py-5">
-        <div className="d-flex flex-column bg-light text-center">
-          <h1>React-Chat</h1>
+        <div className="d-flex flex-column text-center border">
+          <h1 className="display-4">React-Chat</h1>
           <div>
             {user ? (
               <Homepage user={user} />
