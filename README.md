@@ -1,3 +1,7 @@
+# React + Firebase Chat Application
+Simple demonstration of a Firebase/Firestore based React chat application. Allows for real-time communication between users authenticated with Google sign-in.
+
+Demonstration app: https://react-chat-22.web.app/
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
