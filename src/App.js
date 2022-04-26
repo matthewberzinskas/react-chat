@@ -1,4 +1,6 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./Firebase";
 
@@ -13,10 +15,10 @@ function App() {
   console.log("Welcome", JSON.stringify(user, null, 3));
 
   return (
-    <div className="app bg-dark min-vh-100 p-2">
-      <div className="container border bg-light">
-        <Navbar />
-        <div className="border">
+    <div className="container bg-dark min-vh-100 min-vw-100">
+      <div className="container py-5">
+        <div className="d-flex flex-column bg-light justify-content-center">
+          <h1>React-Chat</h1>
           <section>{user ? <ChatRoom /> : <SignIn />}</section>
         </div>
       </div>
