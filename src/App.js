@@ -26,10 +26,18 @@ function App() {
   console.log("Welcome", JSON.stringify(user, null, 3));
 
   return (
-    <body className="container">
-      <nav class="navbar navbar-light bg-light justify-content-end">
-        <SignOut />
+    <body className="container border">
+      <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            React-Chat
+          </a>
+          <div className="justify-content-end">
+            <SignOut />
+          </div>
+        </div>
       </nav>
+
       <div className="border">
         <section>{user ? <ChatRoom /> : <SignIn />}</section>
       </div>
@@ -121,7 +129,7 @@ function ChatMessage(props) {
   return (
     <>
       <div className={`message ${messageClass}`}>
-        <img src={photoURL} />
+        <img src={photoURL} referrerpolicy="no-referrer"/>
         <p>{text}</p>
       </div>
     </>
