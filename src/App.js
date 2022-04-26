@@ -1,25 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./App.css";
-
-//Firebase Imports
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
-firebase.initializeApp({
-  apiKey: "AIzaSyBEPDg_DCkaSPUc_Wt2b8EJQJ1TEPCa_Pc",
-  authDomain: "react-chat-22.firebaseapp.com",
-  projectId: "react-chat-22",
-  storageBucket: "react-chat-22.appspot.com",
-  messagingSenderId: "679388863489",
-  appId: "1:679388863489:web:8bb9f133b5dd292246b400",
-  measurementId: "G-Q2E64BE40T",
-});
+import Navbar from "./components/Navbar";
+import SignIn from "./components/SignIn";
 
-const auth = firebase.auth();
-const firestore = firebase.firestore();
+import firebase, { auth, firestore } from "./Firebase";
+
+import "./App.css";
 
 function App() {
   const [user] = useAuthState(auth);
@@ -28,37 +16,12 @@ function App() {
   return (
     <div className="app bg-dark min-vh-100 p-2">
       <div className="container border bg-light">
-        <nav className="navbar navbar-light bg-light">
-          <div className="container-fluid">
-            <a className="navbar-brand" href="#">
-              React-Chat
-            </a>
-            <div className="justify-content-end">
-              <SignOut />
-            </div>
-          </div>
-        </nav>
-
+        <Navbar />
         <div className="border">
           <section>{user ? <ChatRoom /> : <SignIn />}</section>
         </div>
       </div>
     </div>
-  );
-}
-
-function SignIn() {
-  const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-  };
-
-  return <button onClick={signInWithGoogle}>Sign in with Google</button>;
-}
-
-function SignOut() {
-  return (
-    auth.currentUser && <button onClick={() => auth.signOut()}>Sign Out</button>
   );
 }
 
