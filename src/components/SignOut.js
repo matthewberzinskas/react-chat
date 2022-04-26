@@ -1,7 +1,9 @@
-import {auth} from "../Firebase"
+import { auth } from "../Firebase";
 
-export default SignOut => () => {
+function SignOut() {
   return (
     auth.currentUser && <button onClick={() => auth.signOut()}>Sign Out</button>
   );
 }
+
+export default SignOut;

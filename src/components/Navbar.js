@@ -1,16 +1,18 @@
-import SignOut from "./SignOut"
+import SignOut from "./SignOut";
 
-export default Navbar => () => {
+function Navbar() {
   return (
     <nav className="navbar navbar-light bg-light">
-    <div className="container-fluid">
-      <a className="navbar-brand" href="#">
-        React-Chat
-      </a>
-      <div className="justify-content-end">
-        <SignOut />
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">
+          React-Chat
+        </a>
+        <div className="justify-content-end">
+          <SignOut />
+        </div>
       </div>
-    </div>
-  </nav>
-  )
+    </nav>
+  );
 }
+
+export default Navbar;
