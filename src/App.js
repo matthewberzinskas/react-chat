@@ -26,20 +26,22 @@ function App() {
   console.log("Welcome", JSON.stringify(user, null, 3));
 
   return (
-    <div className="container border">
-      <nav className="navbar navbar-light bg-light">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            React-Chat
-          </a>
-          <div className="justify-content-end">
-            <SignOut />
+    <div className="app bg-dark min-vh-100 p-2">
+      <div className="container border bg-light">
+        <nav className="navbar navbar-light bg-light">
+          <div className="container-fluid">
+            <a className="navbar-brand" href="#">
+              React-Chat
+            </a>
+            <div className="justify-content-end">
+              <SignOut />
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
 
-      <div className="border">
-        <section>{user ? <ChatRoom /> : <SignIn />}</section>
+        <div className="border">
+          <section>{user ? <ChatRoom /> : <SignIn />}</section>
+        </div>
       </div>
     </div>
   );
