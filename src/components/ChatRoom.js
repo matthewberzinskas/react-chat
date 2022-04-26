@@ -3,7 +3,7 @@ import firebase, { auth, firestore } from "../Firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
 import Navbar from "./Navbar";
-import ChatMessage from './ChatMessage'
+import ChatMessage from "./ChatMessage";
 import Footer from "./Footer";
 
 function ChatRoom() {
@@ -39,35 +39,37 @@ function ChatRoom() {
 
   return (
     <>
-    <Navbar/>
-      <main className="message-scroll">
-        {messages &&
-          messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
-        <span ref={dummy}></span>
-      </main>
-      <div className="messageEntry">
-        <form onSubmit={sendMessage}>
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control"
-              value={formValue}
-              onChange={(e) => setFormValue(e.target.value)}
-              placeholder="Enter your message..."
-            />
-            <button
-              class="btn btn-outline-secondary"
-              type="submit"
-              disabled={!formValue}
-            >
-              Submit
-            </button>
-          </div>
-        </form>
+      <Navbar />
+      <div className="chatRoom p-3">
+        <div className="message-scroll">
+          {messages &&
+            messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
+          <span ref={dummy}></span>
+        </div>
+        <div className="messageEntry">
+          <form onSubmit={sendMessage}>
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control"
+                value={formValue}
+                onChange={(e) => setFormValue(e.target.value)}
+                placeholder="Enter your message..."
+              />
+              <button
+                class="btn btn-outline-secondary"
+                type="submit"
+                disabled={!formValue}
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
 
-export default ChatRoom
+export default ChatRoom;
