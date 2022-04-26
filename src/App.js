@@ -1,12 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./Firebase";
 
-import Navbar from "./components/Navbar";
-import SignIn from "./components/SignIn";
-import ChatRoom from "./components/ChatRoom";
+import Homepage from "./components/Homepage";
 
 import "./App.css";
 
@@ -17,9 +14,16 @@ function App() {
   return (
     <div className="container bg-dark min-vh-100 min-vw-100">
       <div className="container py-5">
-        <div className="d-flex flex-column bg-light justify-content-center">
+        <div className="d-flex flex-column bg-light text-center">
           <h1>React-Chat</h1>
-          <section>{user ? <ChatRoom /> : <SignIn />}</section>
+          <div>
+            {user ? (
+              <Homepage user={user}/>
+            ) : (
+              <h2>You do not have permission to view this page.</h2>
+            )}
+          </div>
+          {/*           <section>{user ? <ChatRoom /> : <SignIn />}</section> */}
         </div>
       </div>
     </div>

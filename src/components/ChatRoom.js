@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import firebase, { auth, firestore } from "../Firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
+import Navbar from "./Navbar";
 import ChatMessage from './ChatMessage'
 
 function ChatRoom() {
@@ -37,6 +38,7 @@ function ChatRoom() {
 
   return (
     <>
+    <Navbar/>
       <main>
         {messages &&
           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
