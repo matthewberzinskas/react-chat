@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 //Firebase Imports
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
@@ -23,20 +23,17 @@ const firestore = firebase.firestore();
 
 function App() {
   const [user] = useAuthState(auth);
-  console.log("Welcome", JSON.stringify(user, null, 2));
+  console.log("Welcome", JSON.stringify(user, null, 3));
 
   return (
-    <body className="bg-light vh-100">
-    <div className="d-flex align-items-center justify-content-center">
-      <header>
-        <h1>⚛️🔥💬</h1>
+    <body className="container">
+      <nav class="navbar navbar-light bg-light justify-content-end">
         <SignOut />
-      </header>
-
-      <section>{user ? <ChatRoom /> : <SignIn />}</section>
-    </div>
+      </nav>
+      <div className="border">
+        <section>{user ? <ChatRoom /> : <SignIn />}</section>
+      </div>
     </body>
-
   );
 }
 
@@ -62,40 +59,56 @@ function ChatRoom() {
   const [messages] = useCollectionData(query, { idField: "id" });
 
   //Input form
-  const [formValue, setFormValue] = useState('');
+  const [formValue, setFormValue] = useState("");
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    const {uid, photoURL} = auth.currentUser;
+    const { uid, photoURL } = auth.currentUser;
 
     await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid,
-      photoURL
-    })
+      photoURL,
+    });
 
     //Reset the form
-    setFormValue('')
-  }
+    setFormValue("");
+  };
 
   //Chat auto-scroll
   const dummy = useRef();
-  useEffect(()=>{
-    dummy.current.scrollIntoView({behavior: 'smooth'});
-  }, [messages])
+  useEffect(() => {
+    dummy.current.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
     <>
       <main>
         {messages &&
           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
-          <span ref={dummy}></span>
+        <span ref={dummy}></span>
       </main>
-      <form onSubmit={sendMessage}>
-          <input value={formValue} onChange={(e)=> setFormValue(e.target.value)} placeholder="Enter your message..."/>
-          <button type="submit" disabled={!formValue}>↩️</button>
-      </form>
+      <div className="messageEntry">
+        <form onSubmit={sendMessage}>
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              value={formValue}
+              onChange={(e) => setFormValue(e.target.value)}
+              placeholder="Enter your message..."
+            />
+            <button
+              class="btn btn-outline-secondary"
+              type="submit"
+              disabled={!formValue}
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   );
 }
