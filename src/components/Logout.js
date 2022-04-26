@@ -1,9 +1,7 @@
 import { auth } from "../Firebase";
 
-function SignOut() {
+export default function Logout() {
   return (
     auth.currentUser && <button onClick={() => auth.signOut()}>Sign Out</button>
   );
 }
-
-export default SignOut;

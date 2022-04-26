@@ -1,18 +1,18 @@
-import ReactDOM from "react-dom";
+import {createRoot} from 'react-dom/client';
+
 import {
   BrowserRouter as Router,
-  Switch,
   Routes,
   Route,
-  Link,
 } from "react-router-dom";
+
 import App from "./App";
 import ChatRoom from "./components/ChatRoom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const container = document.getElementById('root');
-const root = ReactDOM.createRoot(container);
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
 
 root.render(
   <Router>

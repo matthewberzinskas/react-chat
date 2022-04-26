@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./Firebase";
 
 import Homepage from "./components/Homepage";
+import Login from "./routes/Login";
 
 import "./App.css";
 
@@ -17,12 +18,14 @@ export default function App() {
           <h1>React-Chat</h1>
           <div>
             {user ? (
-              <Homepage user={user}/>
+              <Homepage user={user} />
             ) : (
-              <h2>You do not have permission to view this page.</h2>
+              <div className="d-flex flex-column">
+                <h2>You do not have permission to view this page.</h2>
+                <Login />
+              </div>
             )}
           </div>
-          {/*           <section>{user ? <ChatRoom /> : <SignIn />}</section> */}
         </div>
       </div>
     </div>
